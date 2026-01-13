@@ -7,6 +7,16 @@ My personal macOS “rice” setup.
 - **Symlinks (Stow)**: use `stow/` packages (recommended)
 - **Copy files**: use `dotfiles/` (mirrors `$HOME`)
 
+## The Rice
+
+Catppuccin **Mocha** with **Lavender** accents across the stack.
+
+- **Terminal (Ghostty)**: JetBrainsMono Nerd Font, Mocha palette, ~0.92 opacity + blur (`stow/ghostty/.config/ghostty/config`)
+- **Menu bar (SketchyBar)**: translucent Mocha bar + lavender borders (`stow/sketchybar/.config/sketchybar/colors.sh`)
+- **Borders**: rounded 6px border with lavender glow on focus (`stow/borders/.config/borders/bordersrc`)
+- **Shell prompt**: Zsh + Powerlevel10k (`stow/zsh/.p10k.zsh`)
+- **WM feel**: yabai animations enabled + eased, plus modal HUD feedback (`stow/yabai/.yabairc`, `stow/sketchybar/.config/sketchybar/scripts/mode_hud.sh`)
+
 This repo is structured so you can get:
 
 - Zsh + Powerlevel10k config
