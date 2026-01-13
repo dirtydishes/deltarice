@@ -7,6 +7,22 @@ My personal macOS “rice” setup.
 - **Symlinks (Stow)**: use `stow/` packages (recommended)
 - **Copy files**: use `dotfiles/` (mirrors `$HOME`)
 
+**Start here:**
+
+- [macos-rice-cheatsheet.md](macos-rice-cheatsheet.md) (permissions, services, keybinds)
+
+**Downloads / Links:**
+
+- Hyper key: [Hyperkey](https://hyperkey.app/) or [Karabiner-Elements](https://karabiner-elements.pqrs.org/)
+- Launcher: [Raycast](https://www.raycast.com/)
+- Terminal: [Ghostty](https://ghostty.org/)
+- Font: [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads)
+- WM + hotkeys: [yabai](https://github.com/koekeishiya/yabai), [skhd](https://github.com/koekeishiya/skhd)
+- Menu bar: [SketchyBar](https://felixkratz.github.io/SketchyBar/)
+- Borders: [JankyBorders](https://github.com/FelixKratz/JankyBorders)
+- Shell: [Oh My Zsh](https://ohmyz.sh/), [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
+- Theme: [Catppuccin](https://catppuccin.com/) (Mocha + Lavender)
+
 ## The Rice
 
 Catppuccin **Mocha** with **Lavender** accents across the stack.
