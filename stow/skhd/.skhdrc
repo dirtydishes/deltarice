@@ -1,0 +1,137 @@
+# Hyper = ctrl + alt + cmd + shift (Caps Lock)
+
+# Launchers
+ctrl + alt + cmd + shift - space  : open -g "raycast://extensions/raycast/raycast/search"
+ctrl + alt + cmd + shift - return : open -na Ghostty
+
+# Service reload
+ctrl + alt + cmd + shift - escape : yabai --restart-service; skhd --restart-service; sketchybar --reload
+
+# Ghostty tab workaround: balance after Cmd+T
+cmd - t -> [
+  "Ghostty" : /bin/sh -lc 'sleep 0.15; yabai -m space --balance'
+  *         ~
+]
+
+# Debug: create a file if skhd saw the hotkey
+ctrl + alt + cmd + shift - 9 : /usr/bin/touch /tmp/skhd_hotkey_ok
+
+# Toggle SketchyBar visibility (to access the macOS menu bar icons)
+ctrl + alt + cmd + shift - b : sh -lc 'if [ "$(sketchybar --query bar | jq -r .hidden)" = "on" ]; then sketchybar --bar hidden=off; else sketchybar --bar hidden=on; fi'
+
+# Menu bar access: toggle real macOS menu bar visibility
+# - When enabling menu bar: show it (opacity=1) and hide SketchyBar
+# - When disabling menu bar: hide it (opacity=0) and show SketchyBar
+ctrl + alt + cmd + shift - u : sh -lc 'op=$(yabai -m config menubar_opacity 2>/dev/null | tr -d "\n" ); if [ "$op" = "0.0000" ] || [ "$op" = "0" ]; then yabai -m config menubar_opacity 1.0; sketchybar --bar hidden=on; else yabai -m config menubar_opacity 0.0; sketchybar --bar hidden=off; fi'
+
+# Focus window (hjkl)
+ctrl + alt + cmd + shift - h : yabai -m window --focus west
+ctrl + alt + cmd + shift - j : yabai -m window --focus south
+ctrl + alt + cmd + shift - k : yabai -m window --focus north
+ctrl + alt + cmd + shift - l : yabai -m window --focus east
+
+# Spaces (1–5)
+ctrl + alt + cmd + shift - 1 : yabai -m space --focus 1
+ctrl + alt + cmd + shift - 2 : yabai -m space --focus 2
+ctrl + alt + cmd + shift - 3 : yabai -m space --focus 3
+ctrl + alt + cmd + shift - 4 : yabai -m space --focus 4
+ctrl + alt + cmd + shift - 5 : yabai -m space --focus 5
+
+# Toggles
+ctrl + alt + cmd + shift - t : yabai -m window --toggle float
+ctrl + alt + cmd + shift - f : yabai -m window --toggle zoom-fullscreen
+ctrl + alt + cmd + shift - z : yabai -m window --toggle zoom-parent
+ctrl + alt + cmd + shift - q : yabai -m window --close
+
+# Resize mode
+:: resize @
+ctrl + alt + cmd + shift - r ; resize
+
+# Small steps (20px)
+# - h/l = shrink/grow width (uses right edge; falls back to left edge when needed)
+# - k/j = shrink/grow height (uses bottom edge; falls back to top edge when needed)
+resize < h : yabai -m window --resize left:20:0 2>/dev/null || yabai -m window --resize right:-20:0 2>/dev/null
+resize < l : yabai -m window --resize left:-20:0 2>/dev/null || yabai -m window --resize right:20:0 2>/dev/null
+resize < k : yabai -m window --resize top:0:20 2>/dev/null || yabai -m window --resize bottom:0:-20 2>/dev/null
+resize < j : yabai -m window --resize top:0:-20 2>/dev/null || yabai -m window --resize bottom:0:20 2>/dev/null
+
+# Also allow resizing from the other edges (useful when the right/bottom edge is blocked)
+# - a/d = grow/shrink using the left edge
+# - w/s = grow/shrink using the top edge
+resize < a : yabai -m window --resize left:-20:0
+resize < d : yabai -m window --resize left:20:0
+resize < w : yabai -m window --resize top:0:-20
+resize < s : yabai -m window --resize top:0:20
+
+# Big steps (80px)
+resize < shift - h : yabai -m window --resize left:80:0 2>/dev/null || yabai -m window --resize right:-80:0 2>/dev/null
+resize < shift - l : yabai -m window --resize left:-80:0 2>/dev/null || yabai -m window --resize right:80:0 2>/dev/null
+resize < shift - k : yabai -m window --resize top:0:80 2>/dev/null || yabai -m window --resize bottom:0:-80 2>/dev/null
+resize < shift - j : yabai -m window --resize top:0:-80 2>/dev/null || yabai -m window --resize bottom:0:80 2>/dev/null
+resize < shift - a : yabai -m window --resize left:-80:0
+resize < shift - d : yabai -m window --resize left:80:0
+resize < shift - w : yabai -m window --resize top:0:-80
+resize < shift - s : yabai -m window --resize top:0:80
+
+# Reset proportions
+resize < b : yabai -m space --balance
+
+# Exit
+resize < r ; default
+resize < escape ; default
+resize < return ; default
+resize < space ; default
+resize < ctrl + alt + cmd + shift - escape ; default
+
+# Swap mode
+:: swap @
+ctrl + alt + cmd + shift - s ; swap
+swap < h : yabai -m window --swap west
+swap < j : yabai -m window --swap south
+swap < k : yabai -m window --swap north
+swap < l : yabai -m window --swap east
+swap < s ; default
+swap < escape ; default
+swap < return ; default
+swap < space ; default
+swap < ctrl + alt + cmd + shift - escape ; default
+
+# Warp mode (move tiling tree)
+:: warp @
+ctrl + alt + cmd + shift - g ; warp
+warp < h : yabai -m window --warp west
+warp < j : yabai -m window --warp south
+warp < k : yabai -m window --warp north
+warp < l : yabai -m window --warp east
+warp < g ; default
+warp < escape ; default
+warp < return ; default
+warp < space ; default
+warp < ctrl + alt + cmd + shift - escape ; default
+
+# Send-to-space mode
+:: send @
+ctrl + alt + cmd + shift - 0 ; send
+send < 1 : yabai -m window --space 1; yabai -m space --focus 1
+send < 2 : yabai -m window --space 2; yabai -m space --focus 2
+send < 3 : yabai -m window --space 3; yabai -m space --focus 3
+send < 4 : yabai -m window --space 4; yabai -m space --focus 4
+send < 5 : yabai -m window --space 5; yabai -m space --focus 5
+send < 0 ; default
+send < escape ; default
+send < return ; default
+send < space ; default
+send < ctrl + alt + cmd + shift - escape ; default
+
+# Move floating mode
+:: move @
+ctrl + alt + cmd + shift - m ; move
+move < h : yabai -m window --move rel:-40:0
+move < j : yabai -m window --move rel:0:40
+move < k : yabai -m window --move rel:0:-40
+move < l : yabai -m window --move rel:40:0
+move < m ; default
+move < escape ; default
+move < return ; default
+move < space ; default
+move < ctrl + alt + cmd + shift - escape ; default

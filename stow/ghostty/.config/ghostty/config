@@ -1,0 +1,32 @@
+# Catppuccin Mocha (Lavender accents)
+
+font-family = JetBrainsMono Nerd Font
+font-size = 14
+
+background = 1e1e2e
+foreground = cdd6f4
+cursor-color = b4befe
+selection-background = 45475a
+selection-foreground = cdd6f4
+
+background-opacity = 0.92
+background-opacity-cells = true
+background-blur = true
+
+# 16-color palette
+palette = 0=#45475a
+palette = 8=#585b70
+palette = 1=#f38ba8
+palette = 9=#eba0ac
+palette = 2=#a6e3a1
+palette = 10=#94e2d5
+palette = 3=#f9e2af
+palette = 11=#fab387
+palette = 4=#89b4fa
+palette = 12=#b4befe
+palette = 5=#cba6f7
+palette = 13=#f5c2e7
+palette = 6=#94e2d5
+palette = 14=#89dceb
+palette = 7=#bac2de
+palette = 15=#cdd6f4

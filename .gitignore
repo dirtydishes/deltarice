@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Local session logs / transcripts
+session-*.md
+
+# Zsh caches/history (should never be committed)
+*.zwc
+stow/**/.zcompdump*
+stow/**/.zsh_history
+stow/**/.zsh_sessions
+
+# Nested repos (should never be committed)
+stow/**/.git
+stow/**/.git/**

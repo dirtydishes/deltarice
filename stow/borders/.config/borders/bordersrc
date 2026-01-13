@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+borders \
+  style=round \
+  width=6.0 \
+  hidpi=on \
+  ax_focus=on \
+  active_color='glow(0xffb4befe)' \
+  inactive_color=0x22000000 \
+  background_color=0x00000000 \
+  blacklist="SketchyBar, SystemUIServer"

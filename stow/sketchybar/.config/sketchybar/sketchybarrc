@@ -1,0 +1,134 @@
+#!/usr/bin/env sh
+
+source "$CONFIG_DIR/colors.sh"
+
+sketchybar --bar \
+  position=top \
+  height=34 \
+  margin=8 \
+  y_offset=4 \
+  corner_radius=14 \
+  blur_radius=30 \
+  color=$BAR_BG \
+  border_width=1 \
+  border_color=$ITEM_BORDER \
+  padding_left=12 \
+  padding_right=12 \
+  topmost=on \
+  sticky=on \
+  shadow=off \
+  font_smoothing=on
+
+sketchybar --default \
+  icon.font="JetBrainsMono Nerd Font:Bold:14.0" \
+  label.font="JetBrainsMono Nerd Font:Medium:12.0" \
+  icon.color=$SUBTEXT1 \
+  label.color=$TEXT \
+  icon.padding_left=8 \
+  icon.padding_right=6 \
+  label.padding_left=0 \
+  label.padding_right=10 \
+  background.drawing=on \
+  background.height=26 \
+  background.corner_radius=10 \
+  background.color=$CLEAR \
+  background.border_width=1 \
+  background.border_color=$CLEAR
+
+sketchybar --add event yabai_window_focused
+sketchybar --add event yabai_space_changed
+sketchybar --add event yabai_front_app_switched
+
+# Spaces (1–5)
+for i in 1 2 3 4 5; do
+  sketchybar --add item space.$i left \
+    --set space.$i \
+      icon="$i" \
+      label.drawing=off \
+      background.color=$CLEAR \
+      background.border_color=$CLEAR \
+      click_script="yabai -m space --focus $i" \
+      script="$CONFIG_DIR/scripts/space.sh" \
+    --subscribe space.$i space_change yabai_space_changed
+done
+
+sketchybar --add bracket spaces space.1 space.2 space.3 space.4 space.5 \
+  --set spaces \
+    background.color=$ITEM_BG \
+    background.border_color=$ITEM_BORDER
+
+# Front app pill
+sketchybar --add item front_app center \
+  --set front_app \
+    icon=" " \
+    label="" \
+    background.color=$ITEM_BG \
+    background.border_color=$ITEM_BORDER \
+    icon.width=28 \
+    icon.background.drawing=on \
+    icon.background.corner_radius=6 \
+    icon.background.color=$CLEAR \
+    label.max_chars=26 \
+    script="$CONFIG_DIR/scripts/front_app.sh" \
+  --subscribe front_app front_app_switched yabai_window_focused yabai_front_app_switched
+
+# Now playing (shows only when active)
+sketchybar --add item now_playing right \
+  --set now_playing \
+    icon="" \
+    label="" \
+    drawing=off \
+    label.max_chars=34 \
+    click_script="nowplaying-cli togglePlayPause" \
+    script="$CONFIG_DIR/scripts/now_playing.sh" \
+    update_freq=2
+
+# Stats
+sketchybar --add item cpu right \
+  --set cpu \
+    icon="" \
+    label="" \
+    script="$CONFIG_DIR/scripts/cpu.sh" \
+    update_freq=5
+
+sketchybar --add item memory right \
+  --set memory \
+    icon="" \
+    label="" \
+    script="$CONFIG_DIR/scripts/memory.sh" \
+    update_freq=8
+
+sketchybar --add item wifi right \
+  --set wifi \
+    icon="" \
+    label="" \
+    script="$CONFIG_DIR/scripts/wifi.sh" \
+    update_freq=10
+
+sketchybar --add item volume right \
+  --set volume \
+    icon="" \
+    label="" \
+    script="$CONFIG_DIR/scripts/volume.sh" \
+    update_freq=2
+
+sketchybar --add item battery right \
+  --set battery \
+    icon="" \
+    label="" \
+    script="$CONFIG_DIR/scripts/battery.sh" \
+    update_freq=30
+
+sketchybar --add item clock right \
+  --set clock \
+    icon="" \
+    label="" \
+    script="$CONFIG_DIR/scripts/clock.sh" \
+    update_freq=30
+
+sketchybar --add bracket right_group now_playing cpu memory wifi volume battery clock \
+  --set right_group \
+    background.color=$ITEM_BG \
+    background.border_color=$ITEM_BORDER
+
+sketchybar --update
