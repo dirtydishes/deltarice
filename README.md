@@ -1,8 +1,13 @@
 # deltarice
 
-My personal macOS “rice” setup, managed with **GNU Stow**.
+My personal macOS “rice” setup.
 
-This repo is structured so you can run one `stow` command and get:
+**Choose your install style:**
+
+- **Symlinks (Stow)**: use `stow/` packages (recommended)
+- **Copy files**: use `dotfiles/` (mirrors `$HOME`)
+
+This repo is structured so you can get:
 
 - Zsh + Powerlevel10k config
 - Yabai + skhd (tiling + hotkeys)
