@@ -32,6 +32,15 @@ brew tap homebrew/cask-fonts
 brew install --cask font-jetbrains-mono-nerd-font
 ```
 
+**App bundles (recommended for macOS permissions):**
+
+macOS Privacy & Security often won’t list Homebrew CLI binaries for granting permissions.
+We package `yabai`, `skhd`, and `borders` into `.app` bundles so you can grant Accessibility/Input Monitoring/Screen Recording reliably.
+
+```sh
+scripts/build-app-bundles.sh
+```
+
 ## The Rice
 
 Catppuccin **Mocha** with **Lavender** accents across the stack.

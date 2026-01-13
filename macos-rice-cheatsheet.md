@@ -43,6 +43,10 @@ App bundles (created so macOS privacy UI actually lists them):
 - `~/Applications/Skhd.app`
 - `~/Applications/Borders.app`
 
+Build/refresh them from this repo (copies binaries from PATH and ad-hoc signs):
+
+- `scripts/build-app-bundles.sh`
+
 ## Service control
 
 ### The quick “reset everything”
