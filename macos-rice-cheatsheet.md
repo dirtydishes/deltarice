@@ -117,13 +117,15 @@ Config file: `~/.skhdrc`
 
 **Hyper** = `ctrl + alt + cmd + shift` (Caps Lock via Hyperkey)
 
+If `Cmd+Shift+9` works but `Hyper+9` doesn’t, enable **Input Monitoring** for `Hyperkey.app`.
+
 ### Global keys
 
 | Key | Action |
 |---|---|
 | `Hyper + Space` | Raycast search |
 | `Hyper + Return` | Launch Ghostty |
-| `Hyper + Escape` | Restart `yabai` + `skhd`, reload SketchyBar |
+| `Hyper + Escape` | Restart `yabai` + `skhd` + `borders`, reload SketchyBar |
 | `Hyper + 9` | Touch `/tmp/skhd_hotkey_ok` (debug) |
 | `Hyper + b` | Toggle SketchyBar hidden/shown |
 | `Hyper + u` | Toggle *real* macOS menu bar (sets `yabai menubar_opacity` and hides/shows SketchyBar) |

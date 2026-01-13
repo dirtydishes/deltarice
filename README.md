@@ -93,7 +93,7 @@ This setup expects a “Hyper key” on Caps Lock.
 
 - `~/.skhdrc` binds Hyper as `ctrl + alt + cmd + shift`.
 - Recommended: configure Hyperkey (or Karabiner) to map **Caps Lock → ctrl+alt+cmd+shift**.
-- Quick sanity check: press `Hyper + 9` to create `/tmp/skhd_hotkey_ok` (fallback: `Cmd+Shift+9`).
+- Quick sanity check: press `Hyper + 9` to create `/tmp/skhd_hotkey_ok` (fallback: `Cmd+Shift+9`). If the fallback works but Hyper doesn’t, enable **Input Monitoring** for `Hyperkey.app`.
 
 ## Permissions
 
