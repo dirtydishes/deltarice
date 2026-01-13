@@ -6,6 +6,7 @@ ctrl + alt + cmd + shift - return : open -na Ghostty
 
 # Service reload
 ctrl + alt + cmd + shift - escape : /bin/sh -lc 'uid=$(id -u); launchctl kickstart -k gui/$uid/com.koekeishiya.yabai >/dev/null 2>&1 || true; launchctl kickstart -k gui/$uid/homebrew.mxcl.borders >/dev/null 2>&1 || true; launchctl kickstart -k gui/$uid/homebrew.mxcl.sketchybar >/dev/null 2>&1 || true; launchctl kickstart -k gui/$uid/com.koekeishiya.skhd >/dev/null 2>&1 || true'
+cmd + shift - escape             : /bin/sh -lc 'uid=$(id -u); launchctl kickstart -k gui/$uid/com.koekeishiya.yabai >/dev/null 2>&1 || true; launchctl kickstart -k gui/$uid/homebrew.mxcl.borders >/dev/null 2>&1 || true; launchctl kickstart -k gui/$uid/homebrew.mxcl.sketchybar >/dev/null 2>&1 || true; launchctl kickstart -k gui/$uid/com.koekeishiya.skhd >/dev/null 2>&1 || true'
 
 # Ghostty tab workaround: balance after Cmd+T
 cmd - t -> [
@@ -15,6 +16,7 @@ cmd - t -> [
 
 # Debug: create a file if skhd saw the hotkey
 ctrl + alt + cmd + shift - 9 : /usr/bin/touch /tmp/skhd_hotkey_ok
+cmd + shift - 9             : /usr/bin/touch /tmp/skhd_hotkey_ok
 
 # Toggle SketchyBar visibility (to access the macOS menu bar icons)
 ctrl + alt + cmd + shift - b : sh -lc 'if [ "$(sketchybar --query bar | jq -r .hidden)" = "on" ]; then sketchybar --bar hidden=off; else sketchybar --bar hidden=on; fi'
