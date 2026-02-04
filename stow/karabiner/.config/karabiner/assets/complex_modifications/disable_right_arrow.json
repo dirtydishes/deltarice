@@ -1,0 +1,24 @@
+{
+  "title": "Disable Right Arrow",
+  "rules": [
+    {
+      "description": "Disable broken Right Arrow key",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "right_arrow",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

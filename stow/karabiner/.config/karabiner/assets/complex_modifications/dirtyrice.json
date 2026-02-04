@@ -1,0 +1,69 @@
+{
+  "title": "dirtyrice",
+  "rules": [
+    {
+      "description": "Disable broken Right Arrow key",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "right_arrow",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Hyper + WASD => arrow keys (Ctrl+Opt+Cmd+Shift layer)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "w",
+            "modifiers": {
+              "mandatory": ["control", "option", "command", "shift"]
+            }
+          },
+          "to": [{ "key_code": "up_arrow" }]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "a",
+            "modifiers": {
+              "mandatory": ["control", "option", "command", "shift"]
+            }
+          },
+          "to": [{ "key_code": "left_arrow" }]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "mandatory": ["control", "option", "command", "shift"]
+            }
+          },
+          "to": [{ "key_code": "down_arrow" }]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": ["control", "option", "command", "shift"]
+            }
+          },
+          "to": [{ "key_code": "right_arrow" }]
+        }
+      ]
+    }
+  ]
+}

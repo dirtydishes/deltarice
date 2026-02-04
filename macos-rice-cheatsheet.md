@@ -19,6 +19,7 @@ A practical “how to drive it” reference for this machine’s current setup.
 - [Menu bar + app menus](#menu-bar--app-menus)
 - [Window management (yabai)](#window-management-yabai)
 - [SketchyBar stats](#sketchybar-stats)
+- [Karabiner rules](#karabiner-rules)
 - [Troubleshooting](#troubleshooting)
 
 ## Versions
@@ -89,7 +90,7 @@ From your terminal:
 System Settings → Privacy & Security:
 
 - **Accessibility**: allow `Skhd.app`, `Yabai.app`, `Borders.app`
-- **Input Monitoring**: allow `Skhd.app`
+- **Input Monitoring**: allow `Karabiner-Elements` and `Skhd.app`
 - **Screen Recording**: allow `Yabai.app` (required for some yabai config/features)
 
 If hotkeys “randomly stop working” inside a terminal app:
@@ -119,9 +120,9 @@ Notes:
 
 Config file: `~/.skhdrc`
 
-**Hyper** = `ctrl + alt + cmd + shift` (Caps Lock via Hyperkey)
+**Hyper** = `ctrl + alt + cmd + shift` (Caps Lock via Karabiner-Elements)
 
-If `Cmd+Shift+9` works but `Hyper+9` doesn’t, enable **Input Monitoring** for `Hyperkey.app`.
+If `Cmd+Shift+9` works but `Hyper+9` doesn’t, enable **Input Monitoring** for `Karabiner-Elements`.
 
 ### Global keys
 
@@ -238,6 +239,28 @@ Reload after changes:
 
 - `sketchybar --reload`
 
+## Karabiner rules
+
+Karabiner-Elements is the default way this setup creates a Hyper key.
+
+Bundles (from this repo):
+
+- **Default**: **Caps Lock → Hyper (⌃⌥⌘⇧), Escape if tapped** (`capslock_hyper.json`).
+- **Optional**: **Hyper + WASD → arrows** (`hyper_wasd_arrows.json`).
+  - Implication: conflicts with `skhd` swap-mode default (`Hyper + s`). The installer script moves swap mode to `Hyper + e`.
+- **Optional**: **Disable broken Right Arrow** (`disable_right_arrow.json`).
+  - Implication: the physical Right Arrow key stops working everywhere (by design). If you also enable WASD arrows, you still have Right Arrow via `Hyper + d`.
+
+Install helpers:
+
+- `scripts/karabiner-install-hyper.sh` (base Hyper mapping)
+- `scripts/karabiner-install-wasd-arrows.sh` (WASD arrows + patches `~/.skhdrc` swap mode to `Hyper + e`)
+- `scripts/karabiner-install-disable-right-arrow.sh` (disable Right Arrow)
+
+Enable in UI:
+
+- Karabiner-Elements → **Complex Modifications** → **Add rule** → enable the rules you installed.
+
 ## Troubleshooting
 
 ### Space switching doesn’t work
@@ -257,7 +280,7 @@ Reload after changes:
 ### Hotkeys stop working
 
 - Check skhd log: `tail -n 50 /tmp/skhd_${USER}.err.log`
-- Ensure Input Monitoring is enabled for `Skhd.app`
+- Ensure Input Monitoring is enabled for `Karabiner-Elements` and `Skhd.app`
 - Disable Secure Keyboard Entry in the terminal app you’re using
 
 ### Menu bar is “gone”

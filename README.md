@@ -11,9 +11,40 @@ My personal macOS “rice” setup.
 
 - [macos-rice-cheatsheet.md](macos-rice-cheatsheet.md) (permissions, services, keybinds)
 
-**Downloads / Links:**
+## Recommended install (Homebrew)
 
-- Hyper key: [Hyperkey](https://hyperkey.app/) or [Karabiner-Elements](https://karabiner-elements.pqrs.org/)
+```sh
+brew install stow yabai skhd sketchybar borders jq
+brew install --cask ghostty raycast karabiner-elements
+brew tap homebrew/cask-fonts
+brew install --cask font-jetbrains-mono-nerd-font
+```
+
+## Hyper key (Karabiner-Elements is the default)
+
+This setup expects a “Hyper key” on Caps Lock:
+
+- `~/.skhdrc` binds Hyper as `ctrl + alt + cmd + shift`.
+- Recommended: use Karabiner-Elements to map **Caps Lock → ctrl+alt+cmd+shift** (Hyper).
+
+Quick install (recommended):
+
+```sh
+scripts/karabiner-install-hyper.sh
+```
+
+Then enable it:
+
+- Karabiner-Elements → **Complex Modifications** → **Add rule** → enable “Caps Lock → Hyper (⌃⌥⌘⇧), Escape if tapped”
+
+Sanity check:
+
+- Press `Hyper + 9` to create `/tmp/skhd_hotkey_ok` (fallback: `Cmd+Shift+9`).
+- If the fallback works but Hyper doesn’t: enable **Input Monitoring** for **Karabiner-Elements** (and `Skhd.app`).
+
+## Downloads / Links (manual / reference)
+
+- Hyper key: [Karabiner-Elements](https://karabiner-elements.pqrs.org/)
 - Launcher: [Raycast](https://www.raycast.com/)
 - Terminal: [Ghostty](https://ghostty.org/)
 - Font: [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads)
@@ -23,16 +54,7 @@ My personal macOS “rice” setup.
 - Shell: [Oh My Zsh](https://ohmyz.sh/), [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
 - Theme: [Catppuccin](https://catppuccin.com/) (Mocha + Lavender)
 
-**Install (Homebrew):**
-
-```sh
-brew install stow yabai skhd sketchybar borders jq
-brew install --cask ghostty raycast karabiner-elements
-brew tap homebrew/cask-fonts
-brew install --cask font-jetbrains-mono-nerd-font
-```
-
-**App bundles (recommended for macOS permissions):**
+## App bundles (recommended for macOS permissions)
 
 macOS Privacy & Security often won’t list Homebrew CLI binaries for granting permissions.
 We package `yabai`, `skhd`, and `borders` into `.app` bundles so you can grant Accessibility/Input Monitoring/Screen Recording reliably.
@@ -71,19 +93,6 @@ Current packages:
 - `stow/borders` → `~/.config/borders/*`
 - `stow/ghostty` → `~/.config/ghostty/*`
 - `stow/sketchybar` → `~/.config/sketchybar/*`
-
-## Prereqs
-
-- Homebrew
-- `stow`
-- The apps/services you want to run (yabai, skhd, sketchybar, borders, ghostty)
-
-Suggested installs:
-
-```sh
-brew install stow yabai skhd sketchybar borders
-brew install --cask ghostty
-```
 
 ### Oh My Zsh + Powerlevel10k
 
@@ -136,20 +145,33 @@ rsync -a dotfiles/ "$HOME"/
 rsync -a dotfiles/.config/sketchybar/ "$HOME/.config/sketchybar"/
 ```
 
-## Hotkeys
+## Optional Karabiner extras
 
-This setup expects a “Hyper key” on Caps Lock.
+These are not required for a normal install.
 
-- `~/.skhdrc` binds Hyper as `ctrl + alt + cmd + shift`.
-- Recommended: configure Hyperkey (or Karabiner) to map **Caps Lock → ctrl+alt+cmd+shift**.
-- Quick sanity check: press `Hyper + 9` to create `/tmp/skhd_hotkey_ok` (fallback: `Cmd+Shift+9`). If the fallback works but Hyper doesn’t, enable **Input Monitoring** for `Hyperkey.app`.
+Optional installs:
+
+```sh
+scripts/karabiner-install-wasd-arrows.sh
+scripts/karabiner-install-disable-right-arrow.sh
+```
+
+Then enable them:
+
+- Karabiner-Elements → **Complex Modifications** → **Add rule** → enable the rules you installed
+
+### Note: `Hyper + s` conflict (WASD arrows)
+
+In the default `skhd` config, `Hyper + s` enters **swap mode**. If you enable **Hyper + WASD** arrows, `Hyper + s` will instead act like **Down Arrow**, so swap mode won’t trigger.
+
+Fix: remap swap mode to another key (example: `Hyper + e`) in your `~/.skhdrc`. `scripts/karabiner-install-wasd-arrows.sh` patches this automatically.
 
 ## Permissions
 
 System Settings → Privacy & Security:
 
-- **Accessibility**: allow `Skhd.app`, `Yabai.app`, `Borders.app`, and `Hyperkey.app`
-- **Input Monitoring**: allow `Skhd.app` (and `Hyperkey.app` if you use it)
+- **Accessibility**: allow `Skhd.app`, `Yabai.app`, `Borders.app`
+- **Input Monitoring**: allow `Karabiner-Elements` and `Skhd.app`
 - **Screen Recording**: allow `Yabai.app` (needed for window animations)
 
 If hotkeys stop working inside a terminal:
